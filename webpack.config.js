@@ -31,16 +31,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'css/[name].css'
     }),
-    new CopyPlugin({
-      patterns: [
-        { 
-          from: 'src/public', 
-          to: '.', 
-          globOptions: {
-            ignore: ['**/*.ts']
-          }
-        }
-      ]
-    })
+    // Removendo o Copy Plugin para evitar o erro com arquivos inexistentes
+    // Vamos recriar a estrutura de diretórios adequadamente
   ]
 };
