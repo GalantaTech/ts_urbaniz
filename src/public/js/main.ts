@@ -30,7 +30,7 @@ class TypeWriter {
     }
   }
   
-  type() {
+  type(): void {
     if (!this.element) {
       console.warn('Elemento para TypeWriter não encontrado');
       return;
@@ -74,14 +74,14 @@ class TypeWriter {
       typeSpeed = 500;
     }
     
-    setTimeout(() => this.type(), typeSpeed);
+    setTimeout((): void => this.type(), typeSpeed);
   }
 }
 
 /**
  * Função para lidar com o scroll da barra de navegação
  */
-function handleNavbarScroll() {
+function handleNavbarScroll(): void {
   const navbar = document.getElementById('navbar');
   
   if (!navbar) {
@@ -101,7 +101,7 @@ function handleNavbarScroll() {
 /**
  * Função para alternar menu móvel
  */
-function toggleMobileMenu() {
+function toggleMobileMenu(): void {
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
   
@@ -122,7 +122,7 @@ function toggleMobileMenu() {
 /**
  * Função para inicializar particles.js
  */
-function initParticles() {
+function initParticles(): void {
   if (typeof window.particlesJS === 'function') {
     try {
       window.particlesJS('particles-js', settings);
@@ -137,7 +137,7 @@ function initParticles() {
 /**
  * Função para esconder o preloader
  */
-function hidePreloader() {
+function hidePreloader(): void {
   const preloader = document.getElementById('preloader');
   
   if (!preloader) {
@@ -148,7 +148,7 @@ function hidePreloader() {
   setTimeout(() => {
     preloader.classList.add('hidden');
     setTimeout(() => {
-      preloader.style.display = 'none';
+      if (preloader) preloader.style.display = 'none';
     }, 500);
   }, 1500);
 }
@@ -156,11 +156,11 @@ function hidePreloader() {
 /**
  * Função para suavizar scrolling para links internos
  */
-function smoothScrolling() {
+function smoothScrolling(): void {
   const navLinks = document.querySelectorAll('.nav-link');
   
   navLinks.forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.addEventListener('click', function(this: HTMLElement, e: Event) {
       e.preventDefault();
       
       const href = this.getAttribute('href');
@@ -196,7 +196,7 @@ function smoothScrolling() {
 /**
  * Função para destacar a seção atual no scroll
  */
-function highlightCurrentSection() {
+function highlightCurrentSection(): void {
   const sections = document.querySelectorAll('.section');
   const navLinks = document.querySelectorAll('.nav-link');
   
