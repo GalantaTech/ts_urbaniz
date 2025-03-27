@@ -1,39 +1,42 @@
 {
-  "name": "urbaniz-typescript",
+  "name": "ts_urbaniz",
   "version": "1.0.0",
-  "description": "Site oficial da Urbaniz reconstruído com TypeScript e Node.js",
+  "description": "Reconstrução do site oficial da Urbaniz utilizando TypeScript, Node.js e Express",
   "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
-    "dev": "concurrently \"nodemon dist/index.js\" \"webpack --watch\"",
-    "build": "tsc && webpack",
-    "clean": "rimraf dist",
-    "copy-assets": "copyfiles -u 1 public/**/* dist",
-    "postbuild": "npm run copy-assets"
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
+    "build": "webpack --mode production && tsc",
+    "clean": "rimraf dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GalantaTech/ts_urbaniz.git"
   },
   "keywords": [
-    "urbaniz",
-    "construção",
-    "tecnologia",
     "typescript",
-    "node"
+    "express",
+    "webpack",
+    "urbaniz"
   ],
-  "author": "Urbaniz",
+  "author": "GalantaTech",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "particlesjs": "^2.2.3"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.11.25",
-    "concurrently": "^8.2.2",
-    "copyfiles": "^2.4.1",
-    "nodemon": "^3.1.0",
-    "rimraf": "^5.0.5",
-    "ts-loader": "^9.5.1",
-    "webpack": "^5.90.3",
-    "webpack-cli": "^5.1.4"
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.15.11",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.7.3",
+    "mini-css-extract-plugin": "^2.7.5",
+    "nodemon": "^2.0.22",
+    "rimraf": "^5.0.0",
+    "ts-loader": "^9.4.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4",
+    "webpack": "^5.80.0",
+    "webpack-cli": "^5.0.2"
   }
 }
