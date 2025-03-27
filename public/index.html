@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval'; style-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline'; font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com data: 'self'; img-src 'self' https: data:; media-src 'self' https:; frame-src https://www.youtube.com; connect-src 'self';">
+    <title>Urbani Z - O Futuro da Construção</title>
+
+    <!-- Meta tags SEO -->
+    <meta name="description"
+        content="Revolucionando a construção civil com tecnologia de impressão 3D e sustentabilidade. Construímos o futuro com inovação e eficiência.">
+    <meta name="keywords"
+        content="impressão 3D, construção civil, inovação, sustentabilidade, tecnologia, construção do futuro">
+    <meta name="author" content="Urbani Z">
+    <meta property="og:title" content="Urbani Z - O Futuro da Construção">
+    <meta property="og:description"
+        content="Revolucionando a construção civil com tecnologia de impressão 3D e sustentabilidade.">
+    <meta property="og:image" content="img/logos/logo branca.png">
+    <meta property="og:url" content="https://urbaniz.com.br">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Favicon -->
+    <link rel="icon" href="img/logos/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="img/logos/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="img/logos/apple-touch-icon.png">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Fontes -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-brands-400.woff2"
+        as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/webfonts/fa-solid-900.woff2"
+        as="font" type="font/woff2" crossorigin>
+
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="css/preloader.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Preload dos vídeos importantes -->
+    <link rel="preload" href="video/0001-0600.mp4" as="video" type="video/mp4">
+</head>
+
+<body class="dark-theme">
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="preloader-content">
+            <div class="preloader-circle"></div>
+            <div class="preloader-circle"></div>
+            <div class="preloader-circle"></div>
+            <div class="preloader-logo">
+                <img src="img/logos/logo branca.png" alt="Urbani Z Logo">
+            </div>
+        </div>
+    </div>
+
+    <!-- Particles.js Container -->
+    <div id="particles-js"></div>
+
+    <!-- Navegação -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img/logos/logo branca.png" alt="Urbani Z" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="fas fa-bars text-light"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">INÍCIO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#impressao3d">IMPRESSÃO 3D</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#materiais">MATERIAIS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tecnologia">TECNOLOGIA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#mensagem">MENSAGEM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">CONTATO</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-video-container">
+            <div class="video-overlay"></div>
+            <video class="hero-video" autoplay muted loop playsinline preload="auto">
+                <source src="video/0001-0600.mp4" type="video/mp4">
+            </video>
+            <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+                <source src="video/dobra13_UBNZ_LinhaDoTempo.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="container position-relative">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8">
+                    <h1 class="hero-title type-writer">Construção do Futuro</h1>
+                    <p class="hero-subtitle">Revolucionando a construção civil com tecnologia de ponta e
+                        sustentabilidade</p>
+                    <div class="hero-buttons">
+                        <a href="#contato" class="btn btn-neon me-3">Seja Parceiro</a>
+                        <a href="#sobre" class="btn btn-outline-neon">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O restante do conteúdo HTML seria colocado aqui, seguindo a estrutura do arquivo original -->
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
