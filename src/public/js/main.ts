@@ -7,65 +7,70 @@ declare global {
   }
 }
 
-// Classe para o efeito de digitação
+/**
+ * Classe para criar efeito de digitação
+ */
 class TypeWriter {
-  element: HTMLElement;
-  text: string;
-  speed: number;
+  element: HTMLElement | null;
+  words: string[];
   wait: number;
-  isDeleting: boolean;
-  idx: number;
+  txt: string = '';
+  wordIndex: number = 0;
+  isDeleting: boolean = false;
   
-  constructor(el: HTMLElement, waitTime = 3000, speed = 100) {
-    this.element = el;
-    this.text = '';
-    this.speed = speed;
-    this.wait = waitTime;
-    this.isDeleting = false;
-    this.idx = 0;
+  constructor(selector: string, words: string[] = ['Soluções urbanas inovadoras para um futuro sustentável'], wait: number = 3000) {
+    this.element = document.getElementById(selector);
+    this.words = words;
+    this.wait = wait;
     
     if (this.element) {
-      this.text = this.element.getAttribute('data-text') || '';
-      this.speed = parseInt(this.element.getAttribute('data-speed') || `${speed}`);
-      this.wait = parseInt(this.element.getAttribute('data-wait') || `${waitTime}`);
       this.type();
     } else {
-      console.error('Elemento para TypeWriter não encontrado');
+      console.warn(`Elemento com ID "${selector}" não encontrado para efeito de digitação`);
     }
   }
   
   type() {
     if (!this.element) {
-      console.error('Elemento para TypeWriter é nulo');
+      console.warn('Elemento para TypeWriter não encontrado');
       return;
     }
     
-    // Texto atual a ser digitado
-    const fullText = this.text;
+    // Palavra atual
+    const current = this.wordIndex % this.words.length;
+    const fullTxt = this.words[current];
     
-    // Verifica se está deletando o texto
+    // Verifica se está em modo de exclusão
     if (this.isDeleting) {
       // Remove caracteres
-      this.element.innerText = fullText.substring(0, this.element.innerText.length - 1);
+      this.txt = fullTxt.substring(0, this.txt.length - 1);
     } else {
       // Adiciona caracteres
-      this.element.innerText = fullText.substring(0, this.element.innerText.length + 1);
+      this.txt = fullTxt.substring(0, this.txt.length + 1);
     }
     
-    // Velocidade de digitação (mais rápido para deletar)
-    let typeSpeed = this.speed;
+    // Insere o texto no elemento
+    this.element.innerHTML = this.txt;
+    
+    // Velocidade inicial para digitar
+    let typeSpeed = 100;
+    
     if (this.isDeleting) {
+      // Mais rápido quando deleta
       typeSpeed /= 2;
     }
     
-    // Verifica se o texto foi totalmente digitado ou deletado
-    if (!this.isDeleting && this.element.innerText === fullText) {
-      // Pausa no final
+    // Se a palavra está completa
+    if (!this.isDeleting && this.txt === fullTxt) {
+      // Fazer uma pausa no final
       typeSpeed = this.wait;
+      // Definir excluir para true
       this.isDeleting = true;
-    } else if (this.isDeleting && this.element.innerText === '') {
+    } else if (this.isDeleting && this.txt === '') {
       this.isDeleting = false;
-      this.idx++;
+      // Mover para a próxima palavra
+      this.wordIndex++;
+      // Pequena pausa antes de começar a digitar
       typeSpeed = 500;
     }
     
@@ -73,20 +78,51 @@ class TypeWriter {
   }
 }
 
-window.addEventListener('DOMContentLoaded', function() {
-  // Elementos DOM
-  const preloader = document.getElementById('preloader');
-  const header = document.querySelector('header') as HTMLElement;
+/**
+ * Função para lidar com o scroll da barra de navegação
+ */
+function handleNavbarScroll() {
+  const navbar = document.getElementById('navbar');
   
-  // Efeito de digitação
-  const typingElement = document.getElementById('typing-text');
-  if (typingElement) {
-    new TypeWriter(typingElement);
-  } else {
-    console.warn('Elemento para digitação não encontrado');
+  if (!navbar) {
+    console.warn('Elemento navbar não encontrado');
+    return;
   }
+  
+  const scrollTop = window.scrollY;
+  
+  if (scrollTop > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+}
 
-  // Inicializar particles.js se disponível
+/**
+ * Função para alternar menu móvel
+ */
+function toggleMobileMenu() {
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  
+  if (!navToggle || !navLinks) {
+    console.warn('Elementos de navegação móvel não encontrados');
+    return;
+  }
+  
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    
+    // Animação para o botão de menu
+    const spans = navToggle.querySelectorAll('span');
+    spans.forEach(span => span.classList.toggle('active'));
+  });
+}
+
+/**
+ * Função para inicializar particles.js
+ */
+function initParticles() {
   if (typeof window.particlesJS === 'function') {
     try {
       window.particlesJS('particles-js', settings);
@@ -96,37 +132,122 @@ window.addEventListener('DOMContentLoaded', function() {
   } else {
     console.warn('particlesJS não está disponível. Verifique se a biblioteca foi carregada.');
   }
+}
 
-  // Função para remover o preloader
-  function hidePreloader() {
-    if (preloader) {
-      setTimeout(function() {
-        preloader.classList.add('hidden');
-        setTimeout(function() {
-          if (preloader) {
-            preloader.style.display = 'none';
-          }
-        }, 500);
-      }, 1500);
-
-      // Adicionar classe 'scrolled' ao header quando a página é rolada
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      });
-    }
+/**
+ * Função para esconder o preloader
+ */
+function hidePreloader() {
+  const preloader = document.getElementById('preloader');
+  
+  if (!preloader) {
+    console.warn('Preloader não encontrado');
+    return;
   }
+  
+  setTimeout(() => {
+    preloader.classList.add('hidden');
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 500);
+  }, 1500);
+}
 
-  // Iniciar o processo de esconder o preloader quando a página carregar
-  window.addEventListener('load', function() {
-    hidePreloader();
+/**
+ * Função para suavizar scrolling para links internos
+ */
+function smoothScrolling() {
+  const navLinks = document.querySelectorAll('.nav-link');
+  
+  navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const href = this.getAttribute('href');
+      if (!href) return;
+      
+      // Destacar link ativo
+      navLinks.forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Scroll para a seção
+      const targetElement = document.querySelector(href) as HTMLElement;
+      if (targetElement) {
+        window.scrollTo({
+          top: targetElement.offsetTop,
+          behavior: 'smooth'
+        });
+        
+        // Fechar menu móvel se aberto
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks?.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          
+          // Resetar animação do botão
+          const navToggle = document.getElementById('navToggle');
+          const spans = navToggle?.querySelectorAll('span');
+          spans?.forEach(span => span.classList.remove('active'));
+        }
+      }
+    });
   });
+}
 
-  // Fallback: esconder o preloader após 3 segundos se o evento load não disparar
-  setTimeout(function() {
-    hidePreloader();
-  }, 3000);
+/**
+ * Função para destacar a seção atual no scroll
+ */
+function highlightCurrentSection() {
+  const sections = document.querySelectorAll('.section');
+  const navLinks = document.querySelectorAll('.nav-link');
+  
+  window.addEventListener('scroll', () => {
+    let current = '';
+    
+    sections.forEach(section => {
+      const sectionElement = section as HTMLElement;
+      const sectionTop = sectionElement.offsetTop;
+      const sectionHeight = sectionElement.clientHeight;
+      
+      if (window.scrollY >= sectionTop - 200) {
+        current = sectionElement.getAttribute('id') || '';
+      }
+    });
+    
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      const href = link.getAttribute('href');
+      if (href && href.includes(current)) {
+        link.classList.add('active');
+      }
+    });
+  });
+}
+
+/**
+ * Inicialização quando o DOM estiver carregado
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  // Inicializar efeito de digitação
+  new TypeWriter('typing-text');
+  
+  // Inicializar particles.js
+  initParticles();
+  
+  // Configurar comportamento da navbar no scroll
+  window.addEventListener('scroll', handleNavbarScroll);
+  
+  // Configurar menu móvel
+  toggleMobileMenu();
+  
+  // Configurar navegação suave
+  smoothScrolling();
+  
+  // Destacar seção atual
+  highlightCurrentSection();
+  
+  // Esconder preloader quando a página carregar completamente
+  window.addEventListener('load', hidePreloader);
+  
+  // Fallback para esconder o preloader se o evento load não disparar
+  setTimeout(hidePreloader, 3000);
 });
