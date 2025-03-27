@@ -18,61 +18,79 @@
 
   <div id="particles-js"></div>
   
-  <header>
-    <div class="logo">
-      <img src="img/logos/logo branca.png" alt="Urbaniz Logo">
-    </div>
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#projetos">Projetos</a></li>
-        <li><a href="#contato">Contato</a></li>
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <img src="img/logos/logo branca.png" alt="Urbaniz Logo">
+      </a>
+      <div class="nav-toggle" id="navToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#sobre" class="nav-link">Sobre</a></li>
+        <li><a href="#projetos" class="nav-link">Projetos</a></li>
+        <li><a href="#contato" class="nav-link">Contato</a></li>
       </ul>
-    </nav>
-  </header>
+    </div>
+  </nav>
 
   <main>
-    <section id="home">
-      <h1>Urbaniz</h1>
-      <p id="typing-text" data-text="Soluções urbanas inovadoras para um futuro sustentável" data-wait="3000" data-speed="100"></p>
+    <section id="home" class="section">
+      <div class="container">
+        <h1>Urbaniz</h1>
+        <div class="typing-container">
+          <span id="typing-text"></span>
+        </div>
+        <a href="#sobre" class="btn-primary">Saiba Mais</a>
+      </div>
     </section>
 
-    <section id="sobre">
-      <h2>Sobre Nós</h2>
-      <p>A Urbaniz é uma empresa especializada em soluções urbanas sustentáveis, comprometida com o desenvolvimento de cidades mais inteligentes e eficientes.</p>
+    <section id="sobre" class="section">
+      <div class="container">
+        <h2>Sobre Nós</h2>
+        <p>A Urbaniz é uma empresa especializada em soluções urbanas sustentáveis, comprometida com o desenvolvimento de cidades mais inteligentes e eficientes.</p>
+      </div>
     </section>
 
-    <section id="projetos">
-      <h2>Nossos Projetos</h2>
-      <div class="projetos-grid">
-        <div class="projeto-card">
-          <h3>Projeto 1</h3>
-          <p>Descrição do projeto</p>
-        </div>
-        <div class="projeto-card">
-          <h3>Projeto 2</h3>
-          <p>Descrição do projeto</p>
-        </div>
-        <div class="projeto-card">
-          <h3>Projeto 3</h3>
-          <p>Descrição do projeto</p>
+    <section id="projetos" class="section">
+      <div class="container">
+        <h2>Nossos Projetos</h2>
+        <div class="projetos-grid">
+          <div class="projeto-card">
+            <h3>Projeto 1</h3>
+            <p>Descrição do projeto</p>
+          </div>
+          <div class="projeto-card">
+            <h3>Projeto 2</h3>
+            <p>Descrição do projeto</p>
+          </div>
+          <div class="projeto-card">
+            <h3>Projeto 3</h3>
+            <p>Descrição do projeto</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="contato">
-      <h2>Entre em Contato</h2>
-      <p>Estamos à disposição para discutir como podemos ajudar a transformar sua cidade.</p>
-      <div class="contato-info">
-        <p>Email: contato@urbaniz.com.br</p>
-        <p>Telefone: (11) 1234-5678</p>
+    <section id="contato" class="section">
+      <div class="container">
+        <h2>Entre em Contato</h2>
+        <p>Estamos à disposição para discutir como podemos ajudar a transformar sua cidade.</p>
+        <div class="contato-info">
+          <p>Email: contato@urbaniz.com.br</p>
+          <p>Telefone: (11) 1234-5678</p>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Urbaniz - Todos os direitos reservados</p>
+    <div class="container">
+      <p>&copy; 2025 Urbaniz - Todos os direitos reservados</p>
+    </div>
   </footer>
 
   <!-- Adicionar o script da biblioteca particles.js antes do nosso script principal -->
