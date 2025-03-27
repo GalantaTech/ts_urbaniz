@@ -59,7 +59,7 @@ nav ul li a:hover {
 }
 
 main {
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
 section {
@@ -76,10 +76,59 @@ h1 {
   color: #00b8d4;
 }
 
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #00b8d4;
+}
+
 p {
   font-size: 1.2rem;
   line-height: 1.6;
   max-width: 700px;
+}
+
+#typing-text {
+  min-height: 1.6em;
+  position: relative;
+}
+
+#typing-text::after {
+  content: '|';
+  position: absolute;
+  right: -10px;
+  animation: blink 0.7s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.projetos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.projeto-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.projeto-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contato-info {
+  margin-top: 2rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 2rem;
+  border-radius: 10px;
 }
 
 footer {
@@ -97,7 +146,15 @@ footer {
     font-size: 2.5rem;
   }
   
+  h2 {
+    font-size: 2rem;
+  }
+  
   p {
     font-size: 1rem;
+  }
+  
+  .projetos-grid {
+    grid-template-columns: 1fr;
   }
 }
