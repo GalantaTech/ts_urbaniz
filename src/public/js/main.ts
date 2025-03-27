@@ -1,6 +1,6 @@
 import { settings } from './particles-config';
 
-// Declaração para definir o particlesJS como uma propriedade global
+// Declaração para o particlesJS como propriedade global
 declare global {
   interface Window {
     particlesJS: (id: string, config: any) => void;
