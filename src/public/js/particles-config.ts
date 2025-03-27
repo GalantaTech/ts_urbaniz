@@ -1,4 +1,5 @@
-interface ParticlesConfig {
+// Interface para a configuração do particles.js
+export interface ParticlesConfig {
   particles: {
     number: {
       value: number;
@@ -109,6 +110,7 @@ interface ParticlesConfig {
   retina_detect: boolean;
 }
 
+// Configuração exportada para uso no main.ts
 export const settings: ParticlesConfig = {
   particles: {
     number: {
